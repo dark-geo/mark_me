@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+  rest:
+    build:
+      context: .
+    ports:
+      - "$REST_PORT:5000"
+    environment:
+      - DATABASE_URI=${DATABASE_URI}
+    command: python3 run.py
+    depends_on:
+      - migration
+      - database
+
+  database:
+    image: postgres:latest
+    ports:
+      - "$DB_PORT:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASS=1234
+      - POSTGRES_DB=mark_me
+
+  migration:
+    build:
+      context: .
+    environment:
+    - DATABASE_URI=${DATABASE_URI}
+    - PYTHONPATH=/app
+    command: alembic upgrade head
+    depends_on:
+    - database
