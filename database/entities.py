@@ -58,22 +58,6 @@ class User(BaseModel):
     username = Column('username', String(255), unique=True)
 
 
-
-class Tokens(BaseModel):
-    # language=rst
-    """
-    Токены для аутентификации пользователя.
-
-    :var str token: рандомная строчка;
-    :var int expires: количество секунд от 1970-года, когда токен перестанет быть валидным;
-    """
-    __tablename__ = 'tokens'
-
-    token = Column(String(256))
-    expires = Column(Integer)
-
-
-
 class Clouds(BaseModel):
     __tablename__ = "clouds"
 
