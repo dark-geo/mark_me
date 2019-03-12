@@ -7,10 +7,18 @@
     <title>Mark me</title>
 </head>
 <body>
-
 <div>
-
+    <form action="/logout" class="logout">
+        <input class="red-button" type="submit" value="Logout"/>
+    </form>
 </div>
-
+<div class="clouds">
+    <p class="has_clouds">На картинке есть облака?</p>
+    <img class="mark_pic" src="{{ url_for('static', filename='example.png') }}" alt="Облако">
+    <form method="post" action="yes_no">
+        <input class="green-button answer" type="submit" value="Да">
+        <input class="red-button answer" type="submit" value="Нет">
+    </form>
+</div>
 </body>
 </html>

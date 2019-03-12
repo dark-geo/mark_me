@@ -1,4 +1,20 @@
-.start {
+.blue-button {
+    background-color: #fff;
+    border: 2px solid #2fc9ff;
+    color: black;
+    padding: 13px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5%;
+}
+
+.blue-button:hover {
+    background-color: #2fc9ff;
+    color: white;
+}
+
+.red-button {
     background-color: #fff;
     border: 2px solid #f00;
     color: black;
@@ -9,10 +25,27 @@
     border-radius: 5%;
 }
 
-.start:hover {
+.red-button:hover {
     background-color: #f00;
     color: white;
 }
+
+.green-button {
+    background-color: #fff;
+    border: 2px solid #00bb00;
+    color: black;
+    padding: 13px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5%;
+}
+
+.green-button:hover {
+    background-color: #00bb00;
+    color: white;
+}
+
 
 .name {
     padding: 15px 32px;
@@ -27,4 +60,30 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%)
+}
+
+.clouds {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.answer {
+    width: 126px;
+}
+
+.mark_pic {
+    width: 256px;
+    height: 256px;
+}
+
+.logout {
+    float: right;
+}
+
+.has_clouds {
+    font-size: 16px;
 }
