@@ -8,16 +8,17 @@
 </head>
 <body>
 <div>
+    <a class="greeting">Привет, {{username}}!</a>
     <form action="/logout" class="logout">
-        <input class="red-button" type="submit" value="Logout"/>
+        <button class="red-button" type="submit" value="logout">Выйти</button>
     </form>
 </div>
 <div class="clouds">
     <p class="has_clouds">На картинке есть облака?</p>
-    <img class="mark_pic" src="{{ url_for('static', filename='example.png') }}" alt="Облако">
-    <form method="post" action="answer">
-        <input class="green-button answer" type="submit" value="Да">
-        <input class="red-button answer" type="submit" value="Нет">
+    <img class="mark_pic" src="/clouds/{{cloud_id}}" alt="Облако">
+    <form method="post" action="answer/{{user_id}}/{{cloud_id}}">
+        <button class="green-button answer" type="submit" name="answer" value=true>Да</button>
+        <button class="red-button answer" type="submit" name="answer" value=false>Нет</button>
     </form>
 </div>
 </body>

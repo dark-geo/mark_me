@@ -1,3 +1,5 @@
+from pathlib import Path
+from uuid import UUID
 from database import db_api
 from flask import Flask, redirect, url_for
 from flask import request, make_response
@@ -40,13 +42,34 @@ def index():
     if not user_id:
         return redirect(url_for('login'))
 
-    return render_template('index.html')
+    username = db_api.get_username_by_id(UUID(user_id))
+    cloud_id = db_api.get_random_cloud()
 
 
-@app.route('/answer', methods=['POST'])
-def answer():
-    user_id = request.cookies.get('user_id')
+    return render_template('index.html',
+                           username=username,
+                           user_id=str(user_id),
+                           cloud_id=str(cloud_id))
 
+
+@app.route('/clouds/<uuid:cloud_id>', methods=['GET'])
+def get_cloud_pic(cloud_id):
+
+    return send_from_directory(Path(app.static_folder), filename='example.png')
+
+
+
+
+
+@app.route('/answer/<uuid:user_id>/<uuid:cloud_id>', methods=['POST'])
+def answer(user_id, cloud_id):
+    answer = True if request.form['answer'] == 'true' else False
+
+    db_api.set_cloud_answer(user_id, cloud_id, answer)
+
+    resp = make_response(redirect('/index'))
+
+    return resp
 
 
 

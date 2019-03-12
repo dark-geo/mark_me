@@ -4,6 +4,16 @@ from database import session_context_manager
 from database import entities
 
 
+def get_username_by_id(user_id: UUID):
+    with session_context_manager() as session:
+        user = session.query(entities.User).filter_by(id=user_id).scalar()
+
+        if not user:
+            raise ValueError('There is no user with such ID in the database!')
+
+    return user.username
+
+
 def get_or_create_user(username: str) -> UUID:
     with session_context_manager() as session:
         user = session.query(entities.User).filter_by(username=username).scalar()
@@ -22,12 +32,22 @@ def init_clouds(path_to_pics: Path):
         pass
 
 
-def get_cloud_image():
+def get_random_cloud() -> UUID:
     with session_context_manager() as session:
         pass
 
+    return uuid4()
 
-def set_answer(user_id: UUID, cloud_id: UUID):
-    with session_context_manager() as session:
-        pass
 
+def set_cloud_answer(user_id: UUID, cloud_id: UUID, has_clouds: bool):
+    # with session_context_manager() as session:
+    #     user = session.query(entities.User).filter_by(id=user_id).scalar()
+    #     cloud = session.query(entities.Cloud).filter_by(id=user_id).scalar()
+    #
+    #     if not user or not cloud:
+    #         raise ValueError('There is no user or cloud with such ID in the database!')
+    #
+    #     session.add(entities.UsersClouds(user_id=user_id,
+    #                                      cloud_id=cloud_id,
+    #                                      has_clouds=has_clouds))
+    pass

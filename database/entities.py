@@ -58,7 +58,7 @@ class User(BaseModel):
     username = Column('username', String(255), unique=True)
 
 
-class Clouds(BaseModel):
+class Cloud(BaseModel):
     __tablename__ = "clouds"
 
     path_to_file = Column('path_to_file', String(1024), nullable=False)
