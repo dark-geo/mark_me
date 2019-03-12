@@ -64,7 +64,6 @@ class Clouds(BaseModel):
     path_to_file = Column('path_to_file', String(1024), nullable=False)
 
 
-
 class UsersClouds(BaseModel):
     __tablename__ = 'users_clouds'
 

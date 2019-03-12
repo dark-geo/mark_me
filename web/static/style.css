@@ -1,0 +1,30 @@
+.start {
+    background-color: #fff;
+    border: 2px solid #f00;
+    color: black;
+    padding: 13px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5%;
+}
+
+.start:hover {
+    background-color: #f00;
+    color: white;
+}
+
+.name {
+    padding: 15px 32px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.login {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}

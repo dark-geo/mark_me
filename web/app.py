@@ -12,7 +12,7 @@ def login():
 
 @app.route('/login', methods=['POST'])
 def setcookie():
-    
+
     user = request.form['name']
 
     resp = make_response(render_template('index.html'))
@@ -43,4 +43,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
