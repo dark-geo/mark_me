@@ -13,13 +13,13 @@ def login():
 
 @app.route('/login', methods=['POST'])
 def setcookie():
-    username = request.form['name']
+    username = request.form['username']
 
     resp = make_response(redirect('/index'))
 
     user_id = db_api.get_or_create_user(username)
 
-    resp.set_cookie('user_id', user_id)
+    resp.set_cookie('user_id', str(user_id))
 
     return resp
 
