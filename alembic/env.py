@@ -44,9 +44,9 @@ def run_migrations_offline():
     script output.
 
     """
-    url = os.getenv("SQLALCHEMY_DATABASE_URI")
+    url = os.getenv("DATABASE_URI")
     if url is None:
-        print('Environment variable SQLALCHEMY_DATABASE_URI is not set. Exiting...')
+        print('Environment variable DATABASE_URI is not set. Exiting...')
         sys.exit(1)
     context.configure(
         url=url,
@@ -65,9 +65,9 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
-    url = os.getenv("SQLALCHEMY_DATABASE_URI")
+    url = os.getenv("DATABASE_URI")
     if url is None:
-        print('Environment variable SQLALCHEMY_DATABASE_URI is not set. Exiting...')
+        print('Environment variable DATABASE_URI is not set. Exiting...')
         sys.exit(1)
     connectable = create_engine(url)
 

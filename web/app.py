@@ -1,3 +1,4 @@
+from database import db_api
 from flask import Flask, redirect, url_for
 from flask import request, make_response
 from flask import render_template, send_from_directory
@@ -12,19 +13,19 @@ def login():
 
 @app.route('/login', methods=['POST'])
 def setcookie():
+    username = request.form['name']
 
-    user = request.form['name']
+    resp = make_response(redirect('/index'))
 
-    resp = make_response(render_template('index.html'))
+    user_id = db_api.get_or_create_user(username)
 
-    resp.set_cookie('user_id', user)
+    resp.set_cookie('user_id', user_id)
 
     return resp
 
 @app.route('/logout', methods=['GET'])
 def logout():
-
-    resp = make_response(render_template('login.html'))
+    resp = make_response(redirect('/login'))
 
     resp.set_cookie('user_id', '')
 
@@ -40,6 +41,13 @@ def index():
         return redirect(url_for('login'))
 
     return render_template('index.html')
+
+
+@app.route('/answer', methods=['POST'])
+def answer():
+    user_id = request.cookies.get('user_id')
+
+
 
 
 if __name__ == '__main__':

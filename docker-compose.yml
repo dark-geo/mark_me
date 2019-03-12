@@ -33,3 +33,6 @@ services:
     command: alembic upgrade head
     depends_on:
     - database
+
+volumes:
+  postgres_data:
