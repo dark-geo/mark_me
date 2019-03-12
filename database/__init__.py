@@ -6,7 +6,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from database.entities import BaseModel
 
 
-DATABASE_URI = os.getenv('DATABASE_URI', 'postgresql://postgres:1234@database/mark_me')
+DATABASE_URI = os.getenv('DATABASE_URI', 'postgresql://postgres:1234@localhost:55432/mark_me')
 
 engine: Engine = create_engine(DATABASE_URI)
 session_factory: sessionmaker = sessionmaker(bind=engine, expire_on_commit=False)

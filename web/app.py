@@ -1,7 +1,7 @@
 from pathlib import Path
 from uuid import UUID
 from database import db_api
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, send_file
 from flask import request, make_response
 from flask import render_template, send_from_directory
 
@@ -54,18 +54,16 @@ def index():
 
 @app.route('/clouds/<uuid:cloud_id>', methods=['GET'])
 def get_cloud_pic(cloud_id):
+    path_to_pic = db_api.get_path_to_picture(cloud_id)
 
-    return send_from_directory(Path(app.static_folder), filename='example.png')
-
-
-
+    return send_file(str(path_to_pic), mimetype='image/png')
 
 
 @app.route('/answer/<uuid:user_id>/<uuid:cloud_id>', methods=['POST'])
 def answer(user_id, cloud_id):
-    answer = True if request.form['answer'] == 'true' else False
+    has_cloud = True if request.form['answer'] == 'true' else False
 
-    db_api.set_cloud_answer(user_id, cloud_id, answer)
+    db_api.set_cloud_answer(user_id, cloud_id, has_cloud)
 
     resp = make_response(redirect('/index'))
 
